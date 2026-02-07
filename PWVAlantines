@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Confetti</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            position: relative;
+        }
+        h1 {
+            color: white;
+            text-shadow: 2px 2px 4px #000;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 20px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #yes {
+            background-color: #4CAF50;
+        }
+        #no {
+            background-color: #f44336;
+            position: absolute;
+        }
+        #yes:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Will you be my Valentine?</h1>
+    <div class="buttons">
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        const noButton = document.getElementById('no');
+        const yesButton = document.getElementById('yes');
+
+        noButton.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        });
+
+        yesButton.addEventListener('click', () => {
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+            alert('Yay! Happy Valentine\'s Day!');
+        });
+    </script>
+</body>
+</html>
